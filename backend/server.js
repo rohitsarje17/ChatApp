@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./config/db");
+const connectDB = require("./config/dbConnection");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -8,7 +8,10 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const path = require("path");
 
 dotenv.config();
-connectDB();
+
+// Connect to the database
+connectDB.connect();
+//connectDB();
 const app = express();
 
 app.use(express.json()); // to accept json data
